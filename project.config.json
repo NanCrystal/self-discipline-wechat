@@ -1,0 +1,19 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "miniprogramRoot": "/",
+  "compileType": "miniprogram",
+  "projectname": "self-discipline-wechat",
+  "setting": {
+    "useCompilerPlugins": [
+      "typescript",
+      "less"
+    ]
+  },
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "appid": "wx246a75a21f9c5e25",
+  "condition": {}
+}
