@@ -56,8 +56,10 @@ Page({
     }.bind(this), 1000)
   },
   onPass: function () {
-    wx.navigateTo({
-      url: '/pages/index/index',
+
+    wx.setStorageSync('isFirst', false);
+    wx.switchTab({
+      url: '../index/index',
     })
   },
   /**

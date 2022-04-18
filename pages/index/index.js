@@ -5,7 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    list: [
+      {
+        date: '4月28日',
+        time: "11:25",
+        things: [
+          { value: 'USA', name: '美国' },
+          { value: 'CHN', name: '中国', checked: 'true' },
+          { value: 'BRA', name: '巴西' },
+          { value: 'JPN', name: '日本' },
+          { value: 'ENG', name: '英国' },
+          { value: 'FRA', name: '法国' }
+        ]
+      },
+      {
+        date: '4月28日',
+        time: "11:25",
+        things: [
+          { value: 'USA', name: '美国' },
+        ]
+      },
+    ]
   },
 
   /**

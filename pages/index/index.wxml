@@ -1,6 +1,25 @@
 <!-- index.wxml -->
 <view class="container">
-  <view class="top"></view>
+  <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
+    <view class="upcoming-item">
+      <view class="upcoming-title">
+        <text class="title-date">{{item.date}}</text>
+        <text class="title-time">{{item.time}}</text>
+      </view>
+      <view class="things-container">
+        <view class="thing-item" wx:for="{{item.things}}" wx:for-item="thing" wx:key="thing">
+          <view class="thing-item-container" hover-class="none" hover-stop-propagation="false">
+            <checkbox class="item-checkbox" value="{{thing.value}}" checked="{{thing.checked}}" color="#e96a97" />
+          </view>
+          <view class="weui-cell__bd">{{thing.name}}</view>
+        </view>
+      </view>
+      <image class="delete-image" src="/assets/images/delete.png" mode="aspectFill" />
+    </view>
+  </block>
+  <view class="add-btn">
+    <image class="add-image" src="/assets/images/add.png" mode="aspectFill" />
+  </view>
   <!-- <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">
       <view class="userinfo-avatar" bindtap="bindViewTap">
