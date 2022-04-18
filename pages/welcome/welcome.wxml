@@ -9,10 +9,16 @@
             </block>
         </swiper>
     </view>
-    <view class="welcome-pass">
+    <view class="welcome-pass"  bindtap="onPass">
         跳过
     </view>
-    <view class="welcome-text">
+    <view class="welcome-text" animation="{{animationData}}">
+        <view class="desc-item">记</view>
+        <view class="desc-item">录</view>
+        <view class="desc-item">美</view>
+        <view class="desc-item">好</view>
+        <view class="desc-item">生</view>
+        <view class="desc-item">活</view>
           <!-- <image class="welcome-image" src="{{welcome}}"  mode="aspectFit" /> -->
     </view>
 </view>

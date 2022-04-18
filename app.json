@@ -1,7 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/welcome/welcome"
+    "pages/welcome/welcome",
+    "pages/Upcoming/Upcoming",
+    "pages/treeHole/treeHole",
+    "pages/journal/journal",
+    "pages/notes/notes"
   ],
   "window": {
     "backgroundTextStyle": "light",
