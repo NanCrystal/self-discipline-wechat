@@ -1,18 +1,18 @@
-// pages/treeHole.js
+// pages/index/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.hideHomeButton();
   },
 
   /**
@@ -21,14 +21,29 @@ Page({
   onReady: function () {
 
   },
-
+  handleAdd() {
+    wx.redirectTo({
+      url: '../addPage/addPage',
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const list = wx.getStorageSync('formDataList');
+    const data = list && JSON.parse(list);
+    console.log('data', data);
+    this.setData({
+      list: data
+    })
   },
-
+  tapItem: function (val) {
+    console.log('val', val);
+    const item = JSON.stringify(val.currentTarget.dataset.item);
+    wx.navigateTo({
+      url: `../addPage/addPage?item=${item}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

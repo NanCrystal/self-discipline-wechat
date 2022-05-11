@@ -1,43 +1,24 @@
-<!-- index.wxml -->
-<view class="container">
-  <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
-    <view class="upcoming-item">
-      <view class="upcoming-title">
-        <text class="title-date">{{item.date}}</text>
-        <text class="title-time">{{item.time}}</text>
-      </view>
-      <view class="things-container">
-        <view class="thing-item" wx:for="{{item.things}}" wx:for-item="thing" wx:key="thing">
-          <view class="thing-item-container" hover-class="none" hover-stop-propagation="false">
-            <checkbox class="item-checkbox" value="{{thing.value}}" checked="{{thing.checked}}" color="#e96a97" />
-          </view>
-          <view class="weui-cell__bd">{{thing.name}}</view>
-        </view>
-      </view>
-      <image class="delete-image" src="/assets/images/delete.png" mode="aspectFill" />
+<!-- pages/welcome.wxml -->
+<view class="welcome-page">
+    <view class= class="welcome-container">
+        <swiper bindchange="handleChange" class="welcome-swiper" easing-function="{{easing}}" circular="{{circular}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for="{{background}}" wx:key="*this">
+                <swiper-item>
+                    <image class="swiper-item" src="{{item}}" mode="aspectFill"/>
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
-  </block>
-  <view class="add-btn">
-    <image class="add-image" src="/assets/images/add.png" mode="aspectFill" />
-  </view>
-  <!-- <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view> -->
-  <!-- <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
+    <view class="welcome-pass"  bindtap="onPass">
+        跳过
+    </view>
+    <view class="welcome-text" animation="{{animationData}}">
+        <view class="desc-item">记</view>
+        <view class="desc-item">录</view>
+        <view class="desc-item">美</view>
+        <view class="desc-item">好</view>
+        <view class="desc-item">生</view>
+        <view class="desc-item">活</view>
+          <!-- <image class="welcome-image" src="{{welcome}}"  mode="aspectFit" /> -->
+    </view>
 </view>

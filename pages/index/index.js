@@ -1,54 +1,120 @@
-// pages/index/index.js
+// pages/welcome/welcome.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      {
-        date: '4月28日',
-        time: "11:25",
-        things: [
-          { value: 'USA', name: '美国' },
-          { value: 'CHN', name: '中国', checked: 'true' },
-          { value: 'BRA', name: '巴西' },
-          { value: 'JPN', name: '日本' },
-          { value: 'ENG', name: '英国' },
-          { value: 'FRA', name: '法国' }
-        ]
-      },
-      {
-        date: '4月28日',
-        time: "11:25",
-        things: [
-          { value: 'USA', name: '美国' },
-        ]
-      },
-    ]
+    background: ['/assets/images/bgc_12.jpg', '/assets/images/bgc_08.jpg', '/assets/images/bgc_14.jpg'],
+    indicatorDots: true,
+    vertical: false,
+    autoplay: true,
+    interval: 2000, //自动切换时间间隔
+    duration: 1000, //滑动动画时长
+    circular: true, //是否采用衔接滑动
+    easing: 'easeInOutCubic', //
+    welcome: "/assets/images/img_welcome.png",
+    animationData: {},
+    backgroundColor: ['#616264', '#b5becd', '#bdb3a6'],
+    frontColor: '#ffffff',
+    barDuration: 1500,
+    barFunc: 'easeInOut'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const {
+      frontColor,
+      backgroundColor,
+      barDuration,
+      barFunc
+    } = this.data
+    wx.setNavigationBarColor({
+      frontColor,
+      backgroundColor: '#616264',
+      animation: {
+        duration: barDuration,
+        timingFunc: barFunc
+      }
+    })
   },
+  initBarColor: function (index) {
+    console.log(index);
+    const {
+      frontColor,
+      backgroundColor,
+      barDuration,
+      barFunc
+    } = this.data
+    wx.setNavigationBarColor({
+      frontColor,
+      backgroundColor: backgroundColor[index],
+      animation: {
+        duration: barDuration,
+        timingFunc: barFunc
+      }
+    })
+  },
+  // 指定 swiper 切换缓动动画类型
+  // easing: function () {
 
+  // },
+  handleChange: function (event) {
+    console.log('event', event);
+    const {
+      current,
+      source
+    } = event.detail;
+    this.initBarColor(current)
+
+    current === 2 && this.setData({
+      autoplay: false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
+  onReady: function () {},
+  scale: function () {
+    this.animation.scale(Math.random() * 2).opacity(0.9).step()
+    this.setData({
+      animation: this.animation.export()
+    })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var animation = wx.createAnimation({
+      duration: 10000,
+      timingFunction: 'ease',
+    })
 
+    this.animation = animation
+
+
+    animation.scale(2).step()
+
+    this.setData({
+      animationData: animation.export()
+    })
+
+    setTimeout(function () {
+      animation.opacity(1).step()
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 1000)
   },
+  onPass: function () {
 
+    wx.setStorageSync('isFirst', true);
+    wx.redirectTo({
+      url: '../treeHole/treeHole',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
