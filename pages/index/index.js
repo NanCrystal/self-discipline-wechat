@@ -25,13 +25,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const isFirstLoad = wx.getStorageSync('isFirst')
+    wx.redirectTo({
+      url: !isFirstLoad ? '../index/index' : '../treeHole/treeHole',
+    });
+
     const {
       frontColor,
       backgroundColor,
       barDuration,
       barFunc
-    } = this.data
-    wx.setNavigationBarColor({
+    } = this.data;
+    !isFirstLoad && wx.setNavigationBarColor({
       frontColor,
       backgroundColor: '#616264',
       animation: {
