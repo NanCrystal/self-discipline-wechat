@@ -72,6 +72,7 @@
 
 .textarea-context {
   width: 100%;
+  min-height: 300rpx;
 }
 
 .date-title {
@@ -80,6 +81,7 @@
 
 .textarea-text {
   width: 109rpx;
+  line-height: 42rpx;
 }
 
 .btn-container {
