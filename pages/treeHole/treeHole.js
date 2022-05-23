@@ -61,7 +61,7 @@ Page({
     const list = wx.getStorageSync('formDataList');
     const data = list && JSON.parse(list);
     if (data && data.length) {
-      const res = data.map((i) => {
+      const res = data.map((i, index) => {
         return {
           ...i,
           date: formatDate(i.selectDate),
