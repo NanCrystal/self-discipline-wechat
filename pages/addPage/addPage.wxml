@@ -17,9 +17,13 @@
       <input name="title" value="{{title}}" class="input-context" />
 
     </view>
+    <!-- <view class="input-section">
+      <text class="input-text">背景：</text>
+      <image class="input-bgc"  name="bgc" src="{{bgc}}" mode="aspectFill" />
+    </view> -->
     <view class="textarea-section">
       <text class="textarea-text">事情：</text>
-      <textarea maxlength="-1"  value="{{content}}" confirm-type="return" name="content" auto-height />
+      <textarea class="textarea-context" maxlength="-1" value="{{content}}" confirm-type="return" name="content" auto-height />
     </view>
     <view class="btn-container">
 

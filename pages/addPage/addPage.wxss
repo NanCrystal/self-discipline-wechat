@@ -1,6 +1,6 @@
 /* pages/addPage.wxss */
 .add-page-container {
-  
+
   height: 100vh;
   box-sizing: border-box;
   background-color: #f3f6fa;
@@ -47,33 +47,39 @@
 }
 
 .input-text {
-  width: 120rpx;
+  width: 109rpx;
 
 }
+
 
 .input-context {
   width: 100%;
-  padding-left: 4rpx;
+  /* padding-left: 4rpx; */
 }
 
 .textarea-section {
+  box-sizing: border-box;
   margin-top: 32rpx;
   background-color: #fff;
   min-height: 100rpx;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 16rpx 48rpx;
+  padding: 29rpx 48rpx;
   font-size: 32rpx;
   margin-bottom: 32rpx;
 }
 
+.textarea-context {
+  width: 100%;
+}
+
 .date-title {
-  width: 120rpx;
+  width: 109rpx;
 }
 
 .textarea-text {
-  width: 120rpx;
+  width: 109rpx;
 }
 
 .btn-container {
@@ -100,4 +106,9 @@
   flex: 0 0 40%;
   color: #fff;
   background-color: #C7DCEF;
+}
+
+.input-bgc {
+  width: 240rpx;
+  height: 240rpx;
 }

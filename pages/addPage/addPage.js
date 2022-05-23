@@ -1,8 +1,7 @@
 // pages/addPage.js
 import {
-  formatTime,
   fetchIndex
-} from '../../utils/util'
+} from '../../utils/util';
 Page({
   /**
    * 页面的初始数据
@@ -11,6 +10,8 @@ Page({
     selectDate: '',
     title: '',
     content: '',
+    bgc: '../../assets/images/upload.png',
+    // bgc: '../../assets/images/bgc_01.png',
     id: null,
   },
 
@@ -18,6 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideHomeButton();
+
     const val = options.item && JSON.parse(options.item);
     console.log('options', val);
     if (val) {
@@ -52,7 +55,7 @@ Page({
     const _this = this
     wx.showModal({
       title: '提示',
-      content: '确定删除此条记录吗',
+      content: '确定删除此条记录吗？',
       success(res) {
         if (res.confirm) {
           _this.onDelete();
@@ -66,32 +69,43 @@ Page({
   submit: function (params) {
 
     const list = wx.getStorageSync('formDataList');
+    let data = list ? JSON.parse(list) : [];
+    const urlIndex = Math.floor(Math.random() * 10 + 1);
+    const uuid = (new Date()).getTime();
+
     if (list) {
-      const data = JSON.parse(list);
-      const currentyId = !!list.length ? list[list.length - 1].id + 1 : 0;
-      const item = JSON.stringify(data.push({
+      const currentyId = !!data.length ? data[data.length - 1].id + 1 : 0;
+      const current = [{
         ...params,
-        id: currentyId
-      }))
+        id: currentyId,
+        urlIndex,
+        uuid
+      }]
+      data = current.concat(data);
+      const item = JSON.stringify(data)
+      console.log('有缓存-添加', item);
       wx.setStorageSync('formDataList', item);
     } else {
-      wx.setStorageSync('formDataList', JSON.stringify([{
+      data.push({
         ...params,
+        urlIndex,
+        uuid,
         id: 0
-      }]));
+      })
+      const item = JSON.stringify(data)
+      console.log('无缓存-添加', item);
+      wx.setStorageSync('formDataList', item);
     }
   },
   editDetail: function (params) {
     let list = wx.getStorageSync('formDataList');
-    const data = JSON.parse(list);
-    console.log('delete1', data, this.data);
-    if (list) {
+    const data = list && JSON.parse(list);
+    console.log('编辑', params, data);
+    if (data) {
       const deleteIndex = fetchIndex(data, this.data.id);
-      console.log('deleteIndex', deleteIndex);
-      data.splice(deleteIndex, 1, {
-        ...params
-      });
-      console.log('editDetail===', data);
+      console.log('缓存找到的id', deleteIndex);
+      data.splice(deleteIndex, 1, params);
+      console.log('替换后的缓存列表', data);
       wx.setStorageSync('formDataList', JSON.stringify(data));
       wx.redirectTo({
         url: '../treeHole/treeHole',

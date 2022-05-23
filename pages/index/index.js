@@ -25,100 +25,79 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const isFirstLoad = wx.getStorageSync('isFirst')
-    wx.redirectTo({
-      url: !isFirstLoad ? '../index/index' : '../treeHole/treeHole',
-    });
-
-    const {
-      frontColor,
-      backgroundColor,
-      barDuration,
-      barFunc
-    } = this.data;
-    !isFirstLoad && wx.setNavigationBarColor({
-      frontColor,
-      backgroundColor: '#616264',
-      animation: {
-        duration: barDuration,
-        timingFunc: barFunc
-      }
-    })
+    setTimeout(() => {
+      wx.redirectTo({
+        url: '../treeHole/treeHole',
+      })
+    }, 1000);
+    // const {
+    //   frontColor,
+    //   backgroundColor,
+    //   barDuration,
+    //   barFunc
+    // } = this.data
+    // wx.setNavigationBarColor({
+    //   frontColor,
+    //   backgroundColor: '#616264',
+    //   animation: {
+    //     duration: barDuration,
+    //     timingFunc: barFunc
+    //   }
+    // })
   },
   initBarColor: function (index) {
-    console.log(index);
-    const {
-      frontColor,
-      backgroundColor,
-      barDuration,
-      barFunc
-    } = this.data
-    wx.setNavigationBarColor({
-      frontColor,
-      backgroundColor: backgroundColor[index],
-      animation: {
-        duration: barDuration,
-        timingFunc: barFunc
-      }
-    })
+    // console.log(index);
+    // const {
+    //   frontColor,
+    //   backgroundColor,
+    //   barDuration,
+    //   barFunc
+    // } = this.data
+    // wx.setNavigationBarColor({
+    //   frontColor,
+    //   backgroundColor: backgroundColor[index],
+    //   animation: {
+    //     duration: barDuration,
+    //     timingFunc: barFunc
+    //   }
+    // })
   },
   // 指定 swiper 切换缓动动画类型
   // easing: function () {
 
   // },
-  handleChange: function (event) {
-    console.log('event', event);
-    const {
-      current,
-      source
-    } = event.detail;
-    this.initBarColor(current)
+  // handleChange: function (event) {
+  // console.log('event', event);
+  // const {
+  //   current,
+  //   source
+  // } = event.detail;
+  // this.initBarColor(current)
 
-    current === 2 && this.setData({
-      autoplay: false
-    })
-  },
+  // current === 2 && this.setData({
+  //   autoplay: false
+  // })
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {},
-  scale: function () {
-    this.animation.scale(Math.random() * 2).opacity(0.9).step()
-    this.setData({
-      animation: this.animation.export()
-    })
-  },
+  // scale: function () {
+  //   this.animation.scale(Math.random() * 2).opacity(0.9).step()
+  //   this.setData({
+  //     animation: this.animation.export()
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    var animation = wx.createAnimation({
-      duration: 10000,
-      timingFunction: 'ease',
-    })
-
-    this.animation = animation
-
-
-    animation.scale(2).step()
-
-    this.setData({
-      animationData: animation.export()
-    })
-
-    setTimeout(function () {
-      animation.opacity(1).step()
-      this.setData({
-        animationData: animation.export()
-      })
-    }.bind(this), 1000)
-  },
+  onShow: function () {},
   onPass: function () {
 
-    wx.setStorageSync('isFirst', true);
-    wx.redirectTo({
-      url: '../treeHole/treeHole',
-    })
+    // wx.setStorageSync('isFirst', true);
+    // wx.redirectTo({
+    //   url: '../treeHole/treeHole',
+    // })
   },
   /**
    * 生命周期函数--监听页面隐藏

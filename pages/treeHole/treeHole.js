@@ -1,4 +1,9 @@
 // pages/index/index.js
+// import lottie from 'lottie-miniprogram';
+import {
+  formatDate,
+  formatWeek,
+} from '../../utils/util';
 Page({
 
   /**
@@ -19,8 +24,31 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    // this.init();
   },
+  // init() {
+  //   if (this._inited) {
+  //     return
+  //   }
+  //   wx.createSelectorQuery().selectAll('#c1').node(res => {
+  //     const canvas = res[0].node
+  //     const context = canvas.getContext('2d')
+
+  //     canvas.width = 300
+  //     canvas.height = 300
+
+  //     lottie.setup(canvas)
+  //     this.ani = lottie.loadAnimation({
+  //       loop: true,
+  //       autoplay: true,
+  //       animationData: require('../../assets/json/empty.js'),
+  //       rendererSettings: {
+  //         context,
+  //       },
+  //     })
+  //     this._inited = true
+  //   }).exec()
+  // },
   handleAdd() {
     wx.redirectTo({
       url: '../addPage/addPage',
@@ -32,10 +60,19 @@ Page({
   onShow: function () {
     const list = wx.getStorageSync('formDataList');
     const data = list && JSON.parse(list);
-    console.log('data', data);
-    this.setData({
-      list: data
-    })
+    if (data && data.length) {
+      const res = data.map((i) => {
+        return {
+          ...i,
+          date: formatDate(i.selectDate),
+          week: formatWeek(i.selectDate)
+        }
+      })
+      console.log('res', res);
+      this.setData({
+        list: res
+      })
+    }
   },
   tapItem: function (val) {
     console.log('val', val);
